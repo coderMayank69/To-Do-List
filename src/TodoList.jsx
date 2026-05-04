@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useState,useEffect} from 'react';
-import List from '@mui/material/List';
+import Box from '@mui/material/Box';
 import Todo from './Todo';
 import TodoForm from './TodoForm';
 
@@ -35,12 +35,12 @@ const TodoList = () => {
     }
 
     return (
-    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+    <Box>
       {todos.map((todo) => (
       <Todo key={todo.id} todo={todo} removeTodo={()=> removeTodo(todo.id)} toggleTodo={()=> toggleTodo(todo.id)}/>
       ))}
         <TodoForm  addTodo={addTodo}/>
-      </List>
+      </Box>
   )
 
 }
