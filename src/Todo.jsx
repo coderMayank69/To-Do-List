@@ -1,68 +1,80 @@
 import React from 'react'
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
 import Box from '@mui/material/Box';
 
 const Todo = ({ todo, removeTodo, toggleTodo }) => {
-    const labelId = `checkbox-list-label-${todo.id}`;
   return (
     <Box
       sx={{
         display: 'flex',
         alignItems: 'center',
-        p: '12px 16px',
-        mb: 0.5,
-        borderRadius: 1,
+        p: '12px 0',
+        mb: 1,
+        borderRadius: 0,
         bgcolor: 'transparent',
         transition: 'all 0.15s ease',
-        border: '1px solid transparent',
+        borderBottom: '1px solid #f0f0f0',
         '&:hover': {
-          bgcolor: '#f9f9f9',
           '& .delete-btn': {
             opacity: 1,
           }
         },
-        opacity: todo.completed ? 0.6 : 1,
       }}
     >
-      <Checkbox
-        edge="start"
-        checked={todo.completed}
-        tabIndex={-1}
-        disableRipple
-        inputProps={{ 'aria-labelledby': labelId }}
+      {/* Circular Checkbox */}
+      <Box
         onClick={toggleTodo}
         sx={{
-          mr: 1.5,
-          '&.Mui-checked': {
-            color: '#da3633',
+          width: 24,
+          height: 24,
+          minWidth: 24,
+          minHeight: 24,
+          borderRadius: '50%',
+          border: todo.completed ? 'none' : '2px solid #e0e0e0',
+          bgcolor: todo.completed ? '#da3633' : 'transparent',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          mr: 2,
+          transition: 'all 0.2s ease',
+          '&:hover': {
+            borderColor: '#da3633',
+            bgcolor: todo.completed ? '#da3633' : 'transparent',
           }
         }}
-      />
+      >
+        {todo.completed && (
+          <span style={{ color: '#fff', fontSize: '14px', fontWeight: 'bold' }}>✓</span>
+        )}
+      </Box>
+      
+      {/* Task Text */}
       <Box sx={{ flex: 1 }}>
         <ListItemText 
-          id={labelId} 
           primary={todo.title}
           sx={{
+            m: 0,
             textDecoration: todo.completed ? 'line-through' : 'none',
             color: todo.completed ? '#999' : '#2c3e50',
             '& .MuiListItemText-primary': {
               fontSize: '15px',
               fontWeight: 400,
+              lineHeight: 1.5,
             }
           }}
         />
       </Box>
+      
+      {/* Delete Button */}
       <IconButton 
         edge="end" 
         aria-label="delete" 
         onClick={removeTodo}
         className="delete-btn"
+        size="small"
         sx={{
           opacity: 0,
           transition: 'opacity 0.2s ease',
