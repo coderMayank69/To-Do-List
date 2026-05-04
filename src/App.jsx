@@ -11,14 +11,15 @@ function App() {
       <CssBaseline />
       <Box sx={{ width: '100%', minHeight: '100vh', bgcolor: '#ffffff', py: 4 }}>
         <Container maxWidth="sm">
-          <Typography 
-            variant="h4" 
-            component="h1" 
-            gutterBottom
-            sx={{ fontWeight: '600', color: '#2c3e50', mb: 4 }}
-          >
-            Inbox
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 4 }}>
+            <Typography 
+              variant="h4" 
+              component="h1" 
+              sx={{ fontWeight: '700', color: '#da3633', margin: 0 }}
+            >
+              Todoist
+            </Typography>
+          </Box>
           <TodoList />
         </Container>
       </Box>
